@@ -4,7 +4,11 @@ return {
     event = 'VimEnter',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
     config = function()
+      math.randomseed(os.time())
       -- Footer dinâmico
+
+      local headers = require 'custom.plugins.dashboarddep.headers'
+      local random_header = headers[math.random(#headers)]
       local function footer()
         local stats = require('lazy').stats()
         local plugins = stats.count
@@ -15,19 +19,7 @@ return {
       require('dashboard').setup {
         theme = 'doom',
         config = {
-          header = {
-            '',
-            ' ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓████████▓▒░▒▓█▓▒░      ░▒▓██████▓▒░░▒▓███████▓▒░░▒▓█▓▒░▒▓███████▓▒░  ',
-            '░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░      ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '░▒▓████████▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓██████▓▒░ ░▒▓█▓▒░     ░▒▓█▓▒▒▓███▓▒░▒▓███████▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░      ░▒▓█▓▒░     ░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '░▒▓█▓▒░░▒▓█▓▒░▒▓███████▓▒░░▒▓████████▓▒░▒▓████████▓▒░▒▓██████▓▒░░▒▓█▓▒░░▒▓█▓▒░▒▓█▓▒░▒▓█▓▒░░▒▓█▓▒░ ',
-            '                                                                                                  ',
-            '                                                                                                  ',
-          },
-
+          header = random_header,
           center = {
             { icon = ' ', desc = 'New File             ', action = 'ene | startinsert', key = 'n' },
             { icon = '󰈞 ', desc = 'Find File            ', action = 'Telescope find_files', key = 'f' },
