@@ -175,6 +175,18 @@ vim.api.nvim_set_keymap('i', '<Tab>', [[coc#pum#visible() ? coc#pum#next(1) : "\
 vim.api.nvim_set_keymap('i', '<S-Tab>', [[coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"]], { expr = true, noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '<CR>', [[coc#pum#visible() ? coc#pum#confirm() : "\<CR>"]], { expr = true, noremap = true, silent = true })
 
+-- Normal mode: code action no cursor
+vim.keymap.set('n', '<leader>ca', '<Plug>(coc-codeaction-cursor)', { silent = true, desc = 'Code Action' })
+
+-- Visual mode: code action na seleção
+vim.keymap.set('x', '<leader>ca', '<Plug>(coc-codeaction-selected)', { silent = true, desc = 'Code Action (Selected)' })
+
+-- Code Action na linha
+vim.keymap.set('n', '<leader>cA', '<Plug>(coc-codeaction-line)', { silent = true, desc = 'Code Action (Line)' })
+
+-- Quick fix
+vim.keymap.set('n', '<leader>cq', '<Plug>(coc-fix-current)', { silent = true, desc = 'Quick Fix' })
+
 --
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
